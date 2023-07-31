@@ -19,6 +19,8 @@ class ProductResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
+    protected static ?string $navigationGroup = 'Content';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -29,8 +31,7 @@ class ProductResource extends Resource
                 Forms\Components\Textarea::make('description')
                     ->required()
                     ->maxLength(65535),
-                Forms\Components\TextInput::make('product_image')
-                    ->maxLength(2048),
+                Forms\Components\FileUpload::make('product_image'),
                 Forms\Components\TextInput::make('initial_price')
                     ->required(),
                 Forms\Components\TextInput::make('final_price')
@@ -43,8 +44,7 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('description'),
-                Tables\Columns\TextColumn::make('product_image'),
+                Tables\Columns\ImageColumn::make('product_image'),
                 Tables\Columns\TextColumn::make('initial_price'),
                 Tables\Columns\TextColumn::make('final_price'),
                 Tables\Columns\TextColumn::make('created_at')
