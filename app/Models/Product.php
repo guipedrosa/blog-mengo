@@ -15,7 +15,7 @@ class Product extends Model
     protected function initialPrice(): Attribute
     {
         return Attribute::make(
-            get: fn (int $value) => number_format(round($value/100, 2), 2)
+            get: fn (int $value) => number_format(round($value/100, 2), 2, ",")
             //get: fn (int $value) => $value
 
         );
