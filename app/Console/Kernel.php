@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\DB;
 
 class Kernel extends ConsoleKernel
 {
@@ -13,6 +14,14 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
+        
+        $schedule->call(function() {
+            $product = DB::table('products')->find(1);
+            //dd($product);
+            DB::table('products')->where('id', 1)->update(
+                 ['initial_price' => $product->initial_price - rand(1, 5)]
+            );
+        })->everyFiveSeconds();
     }
 
     /**
