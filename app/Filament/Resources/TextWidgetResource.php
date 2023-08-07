@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ProductResource\Pages;
-use App\Filament\Resources\ProductResource\RelationManagers;
-use App\Models\Product;
+use App\Filament\Resources\TextWidgetResource\Pages;
+use App\Filament\Resources\TextWidgetResource\RelationManagers;
+use App\Models\TextWidget;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
@@ -13,28 +13,28 @@ use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ProductResource extends Resource
+class TextWidgetResource extends Resource
 {
-    protected static ?string $model = Product::class;
+    protected static ?string $model = TextWidget::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
-    protected static ?string $navigationGroup = 'E-Commerce';
+    protected static ?string $navigationGroup = 'Content';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                Forms\Components\TextInput::make('key_widget')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Textarea::make('description')
+                Forms\Components\TextInput::make('title')
                     ->required()
-                    ->maxLength(65535),
-                Forms\Components\FileUpload::make('product_image'),
-                Forms\Components\TextInput::make('initial_price')
+                    ->maxLength(2048),
+                Forms\Components\FileUpload::make('image'),
+                Forms\Components\RichEditor::make('content')
                     ->required(),
-                Forms\Components\TextInput::make('final_price')
+                Forms\Components\Toggle::make('active')
                     ->required(),
             ])->columns(1);
     }
@@ -43,14 +43,10 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\ImageColumn::make('product_image'),
-                Tables\Columns\TextColumn::make('initial_price')
-                ->money('brl'),
-                Tables\Columns\TextColumn::make('final_price')
-                ->money('brl'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
+                Tables\Columns\TextColumn::make('key_widget'),
+                Tables\Columns\TextColumn::make('title'),
+                Tables\Columns\IconColumn::make('active')
+                    ->boolean(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime(),
             ])
@@ -58,6 +54,7 @@ class ProductResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
@@ -75,9 +72,10 @@ class ProductResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListProducts::route('/'),
-            'create' => Pages\CreateProduct::route('/create'),
-            'edit' => Pages\EditProduct::route('/{record}/edit'),
+            'index' => Pages\ListTextWidgets::route('/'),
+            'create' => Pages\CreateTextWidget::route('/create'),
+            'view' => Pages\ViewTextWidget::route('/{record}'),
+            'edit' => Pages\EditTextWidget::route('/{record}/edit'),
         ];
     }    
 }
