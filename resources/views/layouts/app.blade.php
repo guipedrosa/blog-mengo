@@ -60,7 +60,7 @@
     <header class="w-full container mx-auto">
         <div class="flex flex-col items-center py-5">
             <a class="font-bold text-gray-800 uppercase hover:text-gray-700 text-5xl" href="#">
-                <img src="/images/logo7.png" />                
+                <img src="/images/logo10.png" />                
             </a>
             <p class="text-lg text-gray-600">
                 Sempre mais barato!

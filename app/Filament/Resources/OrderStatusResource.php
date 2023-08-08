@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ProductResource\Pages;
-use App\Filament\Resources\ProductResource\RelationManagers;
-use App\Models\Product;
+use App\Filament\Resources\OrderStatusResource\Pages;
+use App\Filament\Resources\OrderStatusResource\RelationManagers;
+use App\Models\OrderStatus;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
@@ -13,13 +13,15 @@ use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ProductResource extends Resource
+class OrderStatusResource extends Resource
 {
-    protected static ?string $model = Product::class;
+    protected static ?string $model = OrderStatus::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
     protected static ?string $navigationGroup = 'E-Commerce';
+
+    protected static ?string $navigationLabel = 'Order Status';
 
     public static function form(Form $form): Form
     {
@@ -28,16 +30,7 @@ class ProductResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Textarea::make('description')
-                    ->required()
-                    ->maxLength(65535),
-                Forms\Components\FileUpload::make('product_image'),
-                Forms\Components\TextInput::make('initial_price')
-                    ->required(),
-                Forms\Components\TextInput::make('final_price')
-                    ->required(),
-                Forms\Components\TextInput::make('qty_in_stock')
-            ])->columns(1);
+            ]);
     }
 
     public static function table(Table $table): Table
@@ -45,12 +38,8 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\ImageColumn::make('product_image'),
-                Tables\Columns\TextColumn::make('initial_price')
-                ->money('brl'),
-                Tables\Columns\TextColumn::make('final_price')
-                ->money('brl'),
-                Tables\Columns\TextColumn::make('qty_in_stock')->label('Stock'),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime(),
             ])
@@ -75,9 +64,9 @@ class ProductResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListProducts::route('/'),
-            'create' => Pages\CreateProduct::route('/create'),
-            'edit' => Pages\EditProduct::route('/{record}/edit'),
+            'index' => Pages\ListOrderStatuses::route('/'),
+            'create' => Pages\CreateOrderStatus::route('/create'),
+            'edit' => Pages\EditOrderStatus::route('/{record}/edit'),
         ];
     }    
 }
