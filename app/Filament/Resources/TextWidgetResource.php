@@ -19,7 +19,7 @@ class TextWidgetResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
-    protected static ?string $navigationGroup = 'Content';
+    protected static ?string $navigationGroup = 'Util';
 
     public static function form(Form $form): Form
     {
