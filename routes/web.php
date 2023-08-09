@@ -17,6 +17,8 @@ use App\Http\Controllers\ProductController;
 */
 
 Route::get('/', [PostController::class, 'index'])->name('home');
+Route::get('/{post:slug}', [PostController::class, 'show'])->name('view');
+
 
 Route::controller(ProductController::class)->group(function(){
     Route::get('/product/{id}', 'show');

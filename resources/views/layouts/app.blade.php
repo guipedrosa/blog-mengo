@@ -32,7 +32,7 @@
 
             <nav>
                 <ul class="flex items-center justify-between font-bold text-sm text-white uppercase no-underline">
-                    <li><a class="hover:text-gray-200 hover:underline px-4" href="#">Shopping</a></li>
+                    <li><a class="hover:text-gray-200 hover:underline px-4" href="#">Shop</a></li>
                     <li><a class="hover:text-gray-200 hover:underline px-4" href="#">Blog</a></li>
                     <li><a class="hover:text-gray-200 hover:underline px-4" href="#">Sobre</a></li>
                 </ul>
@@ -42,13 +42,13 @@
                 <a class="" href="#">
                     <i class="fab fa-facebook"></i>
                 </a>
-                <a class="pl-6" href="#">
+                <a class="pl-3" href="#">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a class="pl-6" href="#">
+                <a class="pl-3" href="#">
                     <i class="fab fa-twitter"></i>
                 </a>
-                <a class="pl-6" href="#">
+                <a class="pl-3" href="#">
                     <i class="fab fa-linkedin"></i>
                 </a>
             </div>
