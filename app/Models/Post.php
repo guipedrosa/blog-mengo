@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Str;
 
 
@@ -25,9 +25,14 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function categories(): BelongsToMany
+    // public function categories(): BelongsToMany
+    // {
+    //     return $this->belongsToMany(Category::class);
+    // }
+
+    public function categories(): MorphToMany
     {
-        return $this->belongsToMany(Category::class);
+        return $this->morphToMany(Category::class, 'categoriable');
     }
 
     public function getPublishedDate()

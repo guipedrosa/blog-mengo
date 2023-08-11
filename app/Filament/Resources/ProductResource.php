@@ -36,7 +36,11 @@ class ProductResource extends Resource
                     ->required(),
                 Forms\Components\TextInput::make('final_price')
                     ->required(),
-                Forms\Components\TextInput::make('qty_in_stock')
+                Forms\Components\TextInput::make('qty_in_stock'),
+                Forms\Components\Select::make('category_id')
+                            ->multiple()
+                            ->relationship('categories', 'title')
+                            ->required()
             ])->columns(1);
     }
 
