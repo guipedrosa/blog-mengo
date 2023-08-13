@@ -16,13 +16,16 @@ class ProductFactory extends Factory
      */
     public function definition(): array
     {
-        $name = fake()->realText(50);
+        $name = fake()->name();
         return [
             'name' => $name, 
             'description' => fake()->realText(2000), 
             'product_image' => fake()->imageUrl(), 
             'initial_price' => fake()->numberBetween(1000, 5000), 
-            'final_price' => fake()->numberBetween(100, 500)       
+            'final_price' => fake()->numberBetween(100, 500),
+            'qty_in_stock' => fake()->numberBetween(1, 10),
+            'price_rule' => 'default',
+            'deliverable' => 0       
         ];
     }
 }
