@@ -1,7 +1,7 @@
 <article class="flex flex-col shadow my-4">
     <!-- Article Image -->
     <a href="#" class="hover:opacity-75">
-        <img src="{{ $post->getThumbnail() }}" class="max-w-md">
+        <img src="{{ $post->getThumbnail() }}" class="max-w-sm">
     </a>
     <div class="bg-white flex flex-col justify-start p-6">
 
