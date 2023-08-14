@@ -12,7 +12,6 @@
         
     </div>  
 
-
     <div class="w-full bg-white shadow flex flex-col my-4 p-6">
         <p class="text-xl font-semibold pb-5">{{ \App\Models\TextWidget::getTitle('sidebar-1') }}</p>
         <p class="pb-2"> {!! \App\Models\TextWidget::getContent('sidebar-1') !!}</p>
@@ -20,5 +19,5 @@
             Get to know us
         </a>
     </div>  
-    
+
 </aside>

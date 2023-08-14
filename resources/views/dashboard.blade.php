@@ -1,17 +1,14 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
-        </div>
+   
+    <div class="w-full bg-white shadow flex flex-col my-4 p-6">
+        {{ __("Oi") }}, {{ auth()->user()->name }}. {{ __("Seja bem-vindo!") }}
     </div>
+
+    <div class="w-full bg-white shadow flex flex-col my-4 p-6">
+        <ul>
+            <li class="inline"><a href="/profile" class="bg-green-800 rounded-lg px-4 py-2 text-white md:w-1/5 m-1">{{ __('Meu Perfil') }}</a></li>
+            <li class="inline"><a class="bg-green-800 rounded-lg px-4 py-2 text-white md:w-1/5 m-1">{{ __('Histórico de Compras') }}</a></li>
+        </ul>        
+    </div>
+   
 </x-app-layout>
