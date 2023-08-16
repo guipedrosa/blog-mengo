@@ -17,9 +17,9 @@ class Kernel extends ConsoleKernel
         
         $schedule->call(function() {
             $product = DB::table('products')->find(1);
-            //dd($product);
+            
             DB::table('products')->where('id', 1)->update(
-                 ['initial_price' => $product->initial_price - rand(1, 5)]
+                 ['actual_price' => $product->actual_price - rand(1, 5)]
             );
         })->everyFiveSeconds();
     }

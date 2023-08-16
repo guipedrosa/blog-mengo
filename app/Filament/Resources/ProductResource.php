@@ -36,6 +36,8 @@ class ProductResource extends Resource
                     ->required(),
                 Forms\Components\TextInput::make('final_price')
                     ->required(),
+                Forms\Components\TextInput::make('actual_price')->disabled(),
+                Forms\Components\Checkbox::make('deliverable'),
                 Forms\Components\TextInput::make('qty_in_stock'),
                 Forms\Components\Select::make('category_id')
                             ->multiple()
@@ -51,8 +53,13 @@ class ProductResource extends Resource
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\ImageColumn::make('product_image'),
                 Tables\Columns\TextColumn::make('initial_price')
+                ->label('Initial $')
+                ->money('brl'),
+                Tables\Columns\TextColumn::make('actual_price')
+                ->label('Actual $')
                 ->money('brl'),
                 Tables\Columns\TextColumn::make('final_price')
+                ->label('Final $')
                 ->money('brl'),
                 Tables\Columns\TextColumn::make('qty_in_stock')->label('Stock'),
                 Tables\Columns\TextColumn::make('updated_at')

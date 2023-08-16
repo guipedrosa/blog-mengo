@@ -30,9 +30,15 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/', [PostController::class, 'index'])->name('home');
+// Blog
+Route::get('/blog', [PostController::class, 'index'])->name('blog');
+
+// Shop
 Route::controller(ProductController::class)->group(function(){
+    Route::get('/', 'showcase');  
+    Route::get('/products', 'showcase');    
     Route::get('/product/{id}', 'show');
 });
 
+// Blog posts
 Route::get('/{post:slug}', [PostController::class, 'show'])->name('view');

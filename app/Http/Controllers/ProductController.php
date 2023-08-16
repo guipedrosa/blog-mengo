@@ -13,13 +13,24 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $posts = Product::query()
-            ->where('active', '=', 1)
-            ->whereDate('published_at', '<', Carbon::now())
-            ->orderBy('published_at', 'desc')
-            ->paginate(5);
+        // $posts = Product::query()
+        //     ->where('active', '=', 1)
+        //     ->whereDate('published_at', '<', Carbon::now())
+        //     ->orderBy('published_at', 'desc')
+        //     ->paginate(5);
 
-        return view('home', compact('posts'));
+        return view('products.showcase');
+    }
+
+    public function showcase()
+    {
+        // $posts = Product::query()
+        //     ->where('active', '=', 1)
+        //     ->whereDate('published_at', '<', Carbon::now())
+        //     ->orderBy('published_at', 'desc')
+        //     ->paginate(5);
+
+        return view('products.showcase');
     }
 
     public function show($product_id)

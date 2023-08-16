@@ -16,7 +16,11 @@ class Product extends Model
         'description', 
         'product_image', 
         'initial_price', 
-        'final_price'
+        'final_price',
+        'qty_in_stock',
+        'price_rule',
+        'deliverable',
+        'actual_price'
     ];
 
     public function categories(): MorphToMany
