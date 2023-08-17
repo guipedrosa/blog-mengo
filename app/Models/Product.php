@@ -33,6 +33,11 @@ class Product extends Model
         return number_format(round($this->initial_price/100, 2), 2, ",", ".");
     }
 
+    public function getActualPrice()
+    {
+        return number_format(round($this->actual_price/100, 2), 2, ",", ".");
+    }
+
     public function getFinalPrice()
     {
         return number_format(round($this->final_price/100, 2), 2, ",", ".");

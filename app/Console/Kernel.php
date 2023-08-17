@@ -16,9 +16,9 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
         
         $schedule->call(function() {
-            $product = DB::table('products')->find(1);
+            $product = DB::table('products')->find(36);
             
-            DB::table('products')->where('id', 1)->update(
+            DB::table('products')->where('id', 36)->update(
                  ['actual_price' => $product->actual_price - rand(1, 5)]
             );
         })->everyFiveSeconds();
