@@ -48,8 +48,8 @@ class ShopOrderResource extends Resource
                 Tables\Columns\TextColumn::make('user.name'),
                 Tables\Columns\TextColumn::make('product.name'),
                 Tables\Columns\TextColumn::make('orderStatus.name'),
-                Tables\Columns\TextColumn::make('qty'),
-                Tables\Columns\TextColumn::make('subtotal'),
+                Tables\Columns\TextColumn::make('qty')->label('Quantity'),
+                Tables\Columns\TextColumn::make('subtotal')->money('brl'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')

@@ -17,8 +17,13 @@ class ShopOrder extends Model
         'product_id',
         'order_status_id',
         'qty',
-        'price'
+        'subtotal'
     ];
+
+    public function getSubtotal()
+    {
+        return number_format(round($this->subtotal/100, 2), 2, ",", ".");
+    }
 
     public function orderStatus(): BelongsTo
     {

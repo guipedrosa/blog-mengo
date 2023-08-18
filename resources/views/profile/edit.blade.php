@@ -3,10 +3,10 @@
     <div class="py-12">        
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             
-            <div class="text-xl px-8">{{ __('Edição de Perfil') }}</div>
+            <div class="text-xl m-1">{{ __('Edição de Perfil') }}</div>
 
             @if (session('status'))
-                <div class="text-xl ml-8 p-2 text-white bg-green-600 rounded-lg" x-data="{show: true}" x-show="show" x-init="setTimeout(() => show = false, 5000)">
+                <div class="text-sm m-1 p-2 text-white bg-green-600 rounded-lg" x-data="{show: true}" x-show="show" x-init="setTimeout(() => show = false, 5000)">
                     {{ __('Perfil salvo com sucesso!') }}
                 </div>
             @endif

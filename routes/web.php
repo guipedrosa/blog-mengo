@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
-
+use App\Http\Controllers\ShopOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +38,10 @@ Route::controller(ProductController::class)->group(function(){
     Route::get('/', 'showcase');  
     Route::get('/products', 'showcase');    
     Route::get('/product/{id}', 'show');
+});
+
+Route::controller(ShopOrderController::class)->group(function(){
+    Route::get('/checkout/{id}', 'checkout');
 });
 
 // Blog posts
