@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <section class="w-full flex flex-col items-center px-3">
+    <section class="w-full flex flex-col items-center px-3" x-data="{ 'showModal': false }">
         
         <div class="md:flex md:items-center">
             <div class="w-full h-64 md:w-1/2 lg:h-96">
@@ -17,24 +17,62 @@
                 <div class="flex items-center mt-6">
                     @auth
                         <div class="mr-2"><input type="text" placeholder="email" value="{{ auth()->user()->email }}" type="email" class="rounded"></div>                        
-                        <a href="/checkout/{{ $product->id }}" class="px-8 py-2 h-10 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">{{ __('Comprar agora!') }}</a>
+                        {{-- <a href="/checkout/{{ $product->id }}" class="px-8 py-2 h-10 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">{{ __('Comprar agora!') }}</a> --}}
+                        <button @click="showModal = true" class="px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">{{ __('Comprar agora!') }}</button>
                     @else
                         <div class="mr-2 bg-blue-500 rounded text-white p-2"><a href="/login">{{ __('Você precisa efetuar o Login para comprar!') }}</a></div>
-                    @endauth
-                    {{-- <a href="/checkout/{{ $product->id }}" class="mx-2 text-gray-600 border rounded-md p-2 hover:bg-gray-200 focus:outline-none">
-                        <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                    </a> --}}
+                    @endauth                    
                 </div>
             </div>
         </div>
 
-        <div class="mt-5 shadow p-3 w-4/5">
+        <div class="mt-5 shadow p-3">
             <p class="py-2">{{ __('Descrição do Produto') }}</p>
             <p>{!! $product->description !!}</p>
         </div>
-                         
-    </section>
 
-    
+        <div        
+        @keydown.escape="showModal = false"
+        >
+
+          <!-- Modal -->
+          <div
+              class="fixed inset-0 z-30 flex items-center justify-center overflow-auto bg-black bg-opacity-50"
+              x-show="showModal"
+          >
+              <!-- Modal inner -->
+              <div
+                  class="max-w-3xl px-6 py-4 mx-auto text-left bg-white rounded shadow-lg h-48"
+                  @click.away="showModal = false"
+                  x-transition:enter="motion-safe:ease-out duration-300"
+                  x-transition:enter-start="opacity-0 scale-90"
+                  x-transition:enter-end="opacity-100 scale-100"
+              >
+                  <!-- Title / Close-->
+                  <div class="flex items-center justify-between">
+                      <h5 class="mr-3 text-black max-w-none">{{ __('Confirmação') }}</h5>
+      
+                      <button type="button" class="z-50 cursor-pointer" @click="showModal = false">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                      </button>
+                  </div>
+      
+                  <!-- content -->
+                  <div class="h-28">
+                    <div class="py-4">
+                        <p class="py-2">{{ __('Deseja realmente receber o link para comprar este produto?') }}</p>
+                        <div class="flex justify-end mt-3">
+                            <button class="bg-green-700 text-white px-12 py-2 rounded mr-2">{{ __('Quero!') }}</button>
+                            <button class="bg-red-700 text-white px-3 py-2 rounded">{{ __('Vou perder!') }}</button>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+                         
+    </section>      
 
 </x-app-layout>
