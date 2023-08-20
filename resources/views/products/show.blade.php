@@ -31,9 +31,7 @@
             <p>{!! $product->description !!}</p>
         </div>
 
-        <div        
-        @keydown.escape="showModal = false"
-        >
+    
 
           <!-- Modal -->
           <div
@@ -64,14 +62,14 @@
                     <div class="py-4">
                         <p class="py-2">{{ __('Deseja realmente receber o link para comprar este produto?') }}</p>
                         <div class="flex justify-end mt-3">
-                            <button class="bg-green-700 text-white px-12 py-2 rounded mr-2">{{ __('Quero!') }}</button>
-                            <button class="bg-red-700 text-white px-3 py-2 rounded">{{ __('Vou perder!') }}</button>
+                            <a href="/checkout/{{ $product->id }}" class="bg-green-700 text-white px-12 py-2 rounded mr-2">{{ __('Quero!') }}</a>
+                            <a href="#" @click="showModal = false" class="bg-red-700 text-white px-3 py-2 rounded">{{ __('Vou perder!') }}</a>
                         </div>
                     </div>
                   </div>
               </div>
           </div>
-      </div>
+      
                          
     </section>      
 

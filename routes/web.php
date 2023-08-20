@@ -41,7 +41,8 @@ Route::controller(ProductController::class)->group(function(){
 });
 
 Route::controller(ShopOrderController::class)->group(function(){
-    Route::get('/checkout/{id}', 'checkout');
+    Route::get('/checkout/payment', 'pay');
+    Route::get('/checkout/{product:id}', 'checkout');
 });
 
 // Blog posts
