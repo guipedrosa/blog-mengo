@@ -18,7 +18,7 @@
                     @auth
                         <div>
                             <div class="py-3 text-lg">Parabéns!</div>
-                            <div>Uma unidade do <span class="text-blue-800">{{ $product->name }}</span> foi reservada! Agora utilize este <a href="/checkout/payment" target="_blank" class="text-red-500">Link de Pagamento</a> ou o enviado por email para garantir seu produto!</div>
+                            <div>Uma unidade do <span class="text-blue-800">{{ $product->name }}</span> foi reservada! Agora <a href="/checkout/payment" target="_blank" class="text-red-500">CLIQUE AQUI</a> ou no link enviado por email para garantir seu produto!</div>
                             <div class="bg-yellow-300 rounded p-2 mt-4">Você deve efetuar o pagamento em até 1h. Se não concluir a compra dentro deste prazo, a unidade deste produto será desbloqueada para outra pessoa.</div>
                         </div>
                     @endauth                    

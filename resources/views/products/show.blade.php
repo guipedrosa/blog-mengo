@@ -10,7 +10,7 @@
                 <h3 class="text-gray-700 uppercase text-2xl">{{ $product->name }}</h3>                
                 <span class="text-gray-500 mt-3 text-lg">{{ __('De R$') }} <strike>{{ $product->getInitialPrice() }}</strike></span>
                                 
-                <livewire:product-price :product="$product" />
+                <livewire:product-price :product="$product" :type_component="'product-price'" />
 
                 <hr class="my-3">
                                 

@@ -8,6 +8,7 @@ use Livewire\Component;
 class ProductPrice extends Component
 {    
     public $product;
+    public $type_component = 'product-price';
 
     public function mount()
     {
@@ -17,6 +18,6 @@ class ProductPrice extends Component
 
     public function render()
     {
-        return view('livewire.product-price');
+        return view('livewire.' . $this->type_component);
     }
 }
