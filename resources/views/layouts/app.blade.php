@@ -24,7 +24,7 @@
     @livewireStyles
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-white font-family-karla" x-cloak>
+<body class="bg-white font-family-karla" x-cloak >
 
     <!-- Top Bar Nav -->
     <nav class="w-full py-4 bg-blue-800 shadow">
@@ -38,19 +38,39 @@
                 </ul>
             </nav>
 
-            <div class="flex items-center text-lg no-underline text-white pr-6">
-                <a class="" href="#">
-                    <i class="fab fa-facebook"></i>
+            <div class="flex items-center text-lg no-underline text-white pr-3">
+                <a class="" href="#">                    
+                    <i class="fas fa-user-circle fa-lg"></i>
+                    <i class="fas fa-chevron-down"></i>
                 </a>
-                <a class="pl-3" href="#">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a class="pl-3" href="#">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a class="pl-3" href="#">
-                    <i class="fab fa-linkedin"></i>
-                </a>
+                <div x-data="{ openProfile: false }" x-cloak>
+                    <div class="block sm:hidden">
+                        <a
+                            href="#"
+                            class="block md:hidden text-base font-bold uppercase text-center justify-center items-center"
+                            @click="openProfile = !openProfile"
+                        >
+                            Menu <i :class="openProfile ? 'fa-chevron-down': 'fa-chevron-up'" class="fas ml-2"></i>
+                        </a>
+                    </div>
+                    <div :class="openProfile ? 'block': 'hidden'" class="w-full flex-grow sm:flex sm:items-center sm:w-auto">
+                        <div class="w-full container mx-auto flex flex-col sm:flex-row items-center justify-center text-sm font-bold uppercase mt-0 px-6 py-2">                                                  
+                
+                            @auth
+                                <a href="{{ route('profile.edit') }}" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Perfil</a>                           
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    
+                                    <x-dropdown-link :href="route('logout')"
+                                            onclick="event.preventDefault();
+                                                        this.closest('form').submit();">
+                                        {{ __('Sair') }}
+                                    </x-dropdown-link>
+                                </form>          
+                            @endauth
+                        </div>
+                    </div>           
+                </div>
             </div>
         </div>
 
