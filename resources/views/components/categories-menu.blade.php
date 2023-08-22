@@ -13,19 +13,6 @@
             @foreach($categories as $category)
                 <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">{{ $category->title }}</a>            
             @endforeach            
-
-            @auth
-                <a href="{{ route('profile.edit') }}" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Perfil</a>                           
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    
-                    <x-dropdown-link :href="route('logout')"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                        {{ __('Sair') }}
-                    </x-dropdown-link>
-                </form>          
-            @endauth
         </div>
     </div>           
 </nav>

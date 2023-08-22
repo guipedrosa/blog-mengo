@@ -6,5 +6,5 @@
         <div class="">{{ date('d/m/Y H:i:s') }}</div>        
     </div>
     <hr class="my-3" />
-    <div class="text-xl text-gray-800">{{ __('Restam apenas') }} <span class="text-blue-800 font-bold">{{ $product->qty_in_stock }}</span> deste produto!</div>
+    <div class="text-xl text-gray-800">{{ __('Restam apenas') }} <span class="text-blue-800 font-bold">{{ $product->qty_in_stock }}</span> no estoque!</div>
 </div>

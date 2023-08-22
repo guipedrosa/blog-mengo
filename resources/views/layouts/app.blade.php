@@ -28,52 +28,58 @@
 
     <!-- Top Bar Nav -->
     <nav class="w-full py-4 bg-blue-800 shadow">
-        <div class="w-full container mx-auto flex flex-wrap items-center justify-between">
-
+        <div class="w-full container mx-auto flex flex-wrap items-center justify-between" x-data="{ openProfile : false }">
             <nav>
                 <ul class="flex items-center justify-between font-bold text-sm text-white uppercase no-underline">
-                    <li><a class="hover:text-gray-200 hover:underline px-4" href="#">Shop</a></li>
-                    <li><a class="hover:text-gray-200 hover:underline px-4" href="#">Blog</a></li>
-                    <li><a class="hover:text-gray-200 hover:underline px-4" href="#">Sobre</a></li>
+                    <li><a class="hover:text-gray-200 hover:underline px-4" href="/">Shop</a></li>
+                    <li><a class="hover:text-gray-200 hover:underline px-4" href="/blog">Blog</a></li>
+                    <li><a class="hover:text-gray-200 hover:underline px-4" href="/sobre">Sobre</a></li>
                 </ul>
             </nav>
 
-            <div class="flex items-center text-lg no-underline text-white pr-3">
+            {{-- <div class="flex items-center text-lg no-underline text-white pr-3">
                 <a class="" href="#">                    
                     <i class="fas fa-user-circle fa-lg"></i>
                     <i class="fas fa-chevron-down"></i>
-                </a>
-                <div x-data="{ openProfile: false }" x-cloak>
-                    <div class="block sm:hidden">
-                        <a
-                            href="#"
-                            class="block md:hidden text-base font-bold uppercase text-center justify-center items-center"
-                            @click="openProfile = !openProfile"
-                        >
-                            Menu <i :class="openProfile ? 'fa-chevron-down': 'fa-chevron-up'" class="fas ml-2"></i>
+                </a>                
+            </div> --}}
+
+
+            <div x-data="{dropdownMenu: false}" class="relative" @click.outside="dropdownMenu = false" @close.stop="dropdownMenu = false">
+                <!-- Dropdown toggle button -->
+                <button @click="dropdownMenu = ! dropdownMenu" class="flex items-center p-2 bg-white rounded-md">
+                    <span class="">
+                        <i class="fas fa-user-circle fa-lg"></i>
+                    </span>
+                </button>
+                <!-- Dropdown list -->
+                <div x-show="dropdownMenu" class="absolute right-0 py-2 mt-2 bg-white bg-gray-100 rounded-md shadow-xl w-44">
+                    @auth                                        
+                        <a href="/profile" class="block px-4 py-2 text-sm text-gray-300 text-gray-700 hover:bg-gray-400 hover:text-white">
+                            {{ __('Perfil') }}
                         </a>
-                    </div>
-                    <div :class="openProfile ? 'block': 'hidden'" class="w-full flex-grow sm:flex sm:items-center sm:w-auto">
-                        <div class="w-full container mx-auto flex flex-col sm:flex-row items-center justify-center text-sm font-bold uppercase mt-0 px-6 py-2">                                                  
-                
-                            @auth
-                                <a href="{{ route('profile.edit') }}" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Perfil</a>                           
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    
-                                    <x-dropdown-link :href="route('logout')"
-                                            onclick="event.preventDefault();
-                                                        this.closest('form').submit();">
-                                        {{ __('Sair') }}
-                                    </x-dropdown-link>
-                                </form>          
-                            @endauth
-                        </div>
-                    </div>           
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-300 text-gray-700 hover:bg-gray-400 hover:text-white">
+                            {{ __('Pedidos') }}
+                        </a>                        
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            
+                            <x-dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('Sair') }}
+                            </x-dropdown-link>
+                        </form>
+                    @else 
+                        <a href="/login" class="block px-4 py-2 text-sm text-gray-300 text-gray-700 hover:bg-gray-400 hover:text-white">
+                            {{ __('Login') }}
+                        </a>
+                    @endauth        
                 </div>
             </div>
-        </div>
 
+
+        </div>
     </nav>
 
     <!-- Text Header -->

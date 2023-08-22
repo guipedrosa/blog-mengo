@@ -16,11 +16,28 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
         
         $schedule->call(function() {
-            $product = DB::table('products')->find(36);
+
+            // active products list
+            $products = DB::table('products')
+                            ->where('actual_price', '>', 'final_price')
+                            ->where('qty_in_stock', '>', 0)
+                            ->get();
             
-            DB::table('products')->where('id', 36)->update(
-                 ['actual_price' => $product->actual_price - rand(1, 5)]
-            );
+            foreach($products as $product) {
+                $new_price = $product->actual_price - rand(1, 9);
+
+                if ($new_price > $product->final_price) { // do not override Final Price
+                    DB::table('products')->where('id', $product->id)->update(
+                         ['actual_price' => $new_price ]
+                    );
+                } else {
+                    // stop price at Final Price
+                    DB::table('products')->where('id', $product->id)->update(
+                        ['actual_price' => $product->final_price ]
+                   );
+                }
+            }
+
         })->everyFiveSeconds();
     }
 
