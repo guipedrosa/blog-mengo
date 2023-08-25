@@ -28,12 +28,12 @@ class Kernel extends ConsoleKernel
 
                 if ($new_price > $product->final_price) { // do not override Final Price
                     DB::table('products')->where('id', $product->id)->update(
-                         ['actual_price' => $new_price ]
+                         ['actual_price' => $new_price]
                     );
                 } else {
                     // stop price at Final Price
                     DB::table('products')->where('id', $product->id)->update(
-                        ['actual_price' => $product->final_price ]
+                        ['actual_price' => $product->final_price]
                    );
                 }
             }

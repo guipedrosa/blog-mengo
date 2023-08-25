@@ -37,15 +37,7 @@
                 </ul>
             </nav>
 
-            {{-- <div class="flex items-center text-lg no-underline text-white pr-3">
-                <a class="" href="#">                    
-                    <i class="fas fa-user-circle fa-lg"></i>
-                    <i class="fas fa-chevron-down"></i>
-                </a>                
-            </div> --}}
-
-
-            <div x-data="{dropdownMenu: false}" class="relative" @click.outside="dropdownMenu = false" @close.stop="dropdownMenu = false">
+            <div x-data="{dropdownMenu: false}" class="relative mr-1" @click.outside="dropdownMenu = false" @close.stop="dropdownMenu = false">
                 <!-- Dropdown toggle button -->
                 <button @click="dropdownMenu = ! dropdownMenu" class="flex items-center p-2 bg-white rounded-md">
                     <span class="">
@@ -58,7 +50,7 @@
                         <a href="/profile" class="block px-4 py-2 text-sm text-gray-300 text-gray-700 hover:bg-gray-400 hover:text-white">
                             {{ __('Perfil') }}
                         </a>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-300 text-gray-700 hover:bg-gray-400 hover:text-white">
+                        <a href="/user-orders" class="block px-4 py-2 text-sm text-gray-300 text-gray-700 hover:bg-gray-400 hover:text-white">
                             {{ __('Pedidos') }}
                         </a>                        
                         <form method="POST" action="{{ route('logout') }}">
@@ -98,7 +90,7 @@
 
     <div class="container mx-auto flex flex-wrap py-6">
 
-        <!-- Posts Section -->
+        <!-- Posts Section -->        
         {{ $slot }}
 
     </div>

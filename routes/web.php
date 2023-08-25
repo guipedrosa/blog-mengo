@@ -28,6 +28,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Orders history for User
+Route::get('/user-orders', [ProfileController::class, 'ordersHistory']);
+
 require __DIR__.'/auth.php';
 
 // Blog
@@ -42,7 +45,9 @@ Route::controller(ProductController::class)->group(function(){
 
 Route::controller(ShopOrderController::class)->group(function(){
     Route::get('/checkout/payment', 'pay');
-    Route::get('/checkout/{product:id}', 'checkout');
+    Route::post('/checkout', 'checkout');
+    Route::get('/congratulations/{product:id}', 'congratulations')->name('congratulations');
+    // Route::get('/checkout/{product:id}', 'checkout');
 });
 
 // Blog posts

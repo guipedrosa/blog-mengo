@@ -16,9 +16,12 @@
                                 
                 <div class="flex items-center mt-6">
                     @auth
-                        <div class="mr-2">Quantidade: <input type="number" value="1" class="rounded w-16"></div>                        
-                        {{-- <a href="/checkout/{{ $product->id }}" class="px-8 py-2 h-10 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">{{ __('Comprar agora!') }}</a> --}}
-                        <button @click="showModal = true" class="px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">{{ __('Comprar agora!') }}</button>
+                        <form x-ref="checkout" action="/checkout" class="flex" method="post">.
+                            @csrf
+                            <div class="mr-2">Quantidade: <input type="number" name="quantity" value="1" class="rounded w-16"></div>                        
+                            <input type="hidden" name="product" value="{{ $product->id }}">
+                            <button @click="showModal = true" type="button" class="px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">{{ __('Comprar agora!') }}</button>
+                        </form>
                     @else
                         <div class="mr-2 bg-blue-500 rounded text-white p-2"><a href="/login">{{ __('Você precisa efetuar o Login para comprar!') }}</a></div>
                     @endauth                    
@@ -62,7 +65,7 @@
                     <div class="py-4">
                         <p class="py-2">{{ __('Falta pouco! Podemos continuar o processo de compra?') }}</p>
                         <div class="flex justify-end mt-3">
-                            <a href="/checkout/{{ $product->id }}" class="bg-green-700 text-white px-12 py-2 rounded mr-2">{{ __('Quero!') }}</a>
+                            <a href="#" @click="$refs.checkout.submit()" class="bg-green-700 text-white px-12 py-2 rounded mr-2">{{ __('Quero!') }}</a>
                             <a href="#" @click="showModal = false" class="bg-red-700 text-white px-3 py-2 rounded">{{ __('Vou perder!') }}</a>
                         </div>
                     </div>
