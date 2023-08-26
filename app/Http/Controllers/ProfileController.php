@@ -63,6 +63,7 @@ class ProfileController extends Controller
     {
         $orders = ShopOrder::query()
                     ->where('user_id', '=', auth()->user()->id)
+                    ->orderBy('created_at', 'desc')
                     ->paginate(10);
 
         return view('profile.orders_history', compact('orders'));

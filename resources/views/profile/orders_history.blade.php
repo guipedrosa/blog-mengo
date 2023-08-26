@@ -16,11 +16,11 @@
                 <tbody>
                     @foreach($orders as $order)
                         <tr class="even:bg-gray-200 odd:bg-gray-300 border-b-gray-600 text-black">
-                            <td class="md:px-1 py-4 px-4"></td>
+                            <td class="md:px-1 py-4 px-4">{{ $order->order_code }}</td>
                             <td class="md:px-1 py-4 px-4 text-clip">{{ $order->product->name }}</td>
                             <td class="md:px-1 py-4 px-4">{{ $order->qty }} </td>
                             <td class="md:px-1 py-4 px-4 truncate">{{ __('R$') }} {{ $order->getSubtotal() }} </td>
-                            <td>Ver Pedido</td>
+                            <td><a href="/order/{{ $order->id }}">Ver Pedido</a></td>
                         </tr>
                     @endforeach                    
                 </tbody>

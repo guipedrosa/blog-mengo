@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,13 +18,20 @@ class ShopOrder extends Model
         'product_id',
         'order_status_id',
         'qty',
-        'subtotal'
+        'total',
+        'actual_price',
+        'order_code'
     ];
 
     public function getSubtotal()
     {
-        return number_format(round($this->subtotal/100, 2), 2, ",", ".");
+        return number_format(round($this->total/100, 2), 2, ",", ".");
     }
+
+    public function getActualPrice()
+    {
+        return number_format(round($this->actual_price/100, 2), 2, ",", ".");
+    }  
 
     public function orderStatus(): BelongsTo
     {

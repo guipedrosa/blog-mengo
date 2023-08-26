@@ -26,10 +26,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+    // Orders history for User
+    Route::get('/user-orders', [ProfileController::class, 'ordersHistory']);
+    Route::get('/order/{id}', [ShopOrderController::class, 'showOrder']);
 });
 
-// Orders history for User
-Route::get('/user-orders', [ProfileController::class, 'ordersHistory']);
 
 require __DIR__.'/auth.php';
 

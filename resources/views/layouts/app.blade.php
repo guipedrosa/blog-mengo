@@ -48,10 +48,10 @@
                 <div x-show="dropdownMenu" class="absolute right-0 py-2 mt-2 bg-white bg-gray-100 rounded-md shadow-xl w-44">
                     @auth                                        
                         <a href="/profile" class="block px-4 py-2 text-sm text-gray-300 text-gray-700 hover:bg-gray-400 hover:text-white">
-                            {{ __('Perfil') }}
+                            {{ __('Meu Perfil') }}
                         </a>
                         <a href="/user-orders" class="block px-4 py-2 text-sm text-gray-300 text-gray-700 hover:bg-gray-400 hover:text-white">
-                            {{ __('Pedidos') }}
+                            {{ __('Meus Pedidos') }}
                         </a>                        
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

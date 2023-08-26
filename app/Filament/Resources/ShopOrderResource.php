@@ -36,7 +36,7 @@ class ShopOrderResource extends Resource
                     ->required(),
                 Forms\Components\TextInput::make('qty')
                     ->required(),
-                Forms\Components\TextInput::make('subtotal')
+                Forms\Components\TextInput::make('total')
                     ->required(),
             ]);
     }
@@ -49,7 +49,7 @@ class ShopOrderResource extends Resource
                 Tables\Columns\TextColumn::make('product.name'),
                 Tables\Columns\TextColumn::make('orderStatus.name'),
                 Tables\Columns\TextColumn::make('qty')->label('Quantity'),
-                Tables\Columns\TextColumn::make('subtotal')->money('brl'),
+                Tables\Columns\TextColumn::make('total')->money('brl'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
